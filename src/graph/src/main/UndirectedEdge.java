@@ -10,4 +10,8 @@ public class UndirectedEdge extends Edge{
         return super.getEnds();
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

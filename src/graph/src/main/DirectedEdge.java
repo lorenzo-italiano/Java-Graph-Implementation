@@ -20,4 +20,9 @@ public class DirectedEdge extends Edge{
             default -> null;
         };
     }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

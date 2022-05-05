@@ -1,5 +1,7 @@
 package graph.src.main;
 
+import java.util.Arrays;
+
 public abstract class Edge {
 
     private int id;
@@ -41,5 +43,15 @@ public abstract class Edge {
 
     public void setValue(double value) {
         this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return "Edge{" +
+                "id=" + id +
+                ", color='" + color + '\'' +
+                ", ends=" + Arrays.toString(ends) +
+                ", value=" + value +
+                '}';
     }
 }
