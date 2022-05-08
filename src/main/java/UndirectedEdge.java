@@ -1,4 +1,3 @@
-package main.java;
 
 /**
  * Undirected Edge representation. Inherits from Edge abstract class

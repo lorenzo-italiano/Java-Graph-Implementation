@@ -1,4 +1,3 @@
-package main.java;
 
 /**
  * a Graph interface containing the necessary methods to be used for solving a graph problem

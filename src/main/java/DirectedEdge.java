@@ -1,4 +1,4 @@
-package main.java;
+
 /**
  * Directed edge representation. Inherits from abstract class Edge
  */
