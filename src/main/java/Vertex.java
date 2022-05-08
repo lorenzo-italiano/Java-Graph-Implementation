@@ -1,22 +1,22 @@
-
+import java.awt.*;
 
 /**
  * Vertices representation
  */
 public class Vertex {
 
-    private int id;
-    private Object info;
-    private String color;
+    private final int id;
+    private static int currentId = 0;
+    private final Object info;
+    private final Color color;
 
     /**Params
      * Constructor
-     * @param id (int): id of the Vertex
      * @param info (Object): Object indicating infos on the Vertex
      * @param color (String): Color of the Vertex
      */
-    public Vertex(int id, Object info, String color) {
-        this.id = id;
+    public Vertex(Object info, Color color) {
+        this.id = currentId++;
         this.info = info;
         this.color = color;
     }
@@ -30,14 +30,6 @@ public class Vertex {
     }
 
     /**Params
-     * id setter
-     * @param id (int) to set
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    /**Params
      * info getter
      * @return infos (Object)
      */
@@ -46,27 +38,11 @@ public class Vertex {
     }
 
     /**Params
-     * info setter
-     * @param info (Object) info to set
-     */
-    public void setInfo(Object info) {
-        this.info = info;
-    }
-
-    /**Params
      * color getter
      * @return color (String)
      */
-    public String getColor() {
+    public Color getColor() {
         return color;
-    }
-
-    /**Params
-     * color setter
-     * @param color (String): color to set
-     */
-    public void setColor(String color) {
-        this.color = color;
     }
 
     /**Params

@@ -1,3 +1,4 @@
+import java.awt.*;
 
 /**
  * Undirected Edge representation. Inherits from Edge abstract class
@@ -5,14 +6,14 @@
 public class UndirectedEdge extends Edge{
 
     /**Params
-     * Constructor of UndirectedEdge instance
-     * @param id (int)
+     * Constructor of UndirectedEdge instance.
+     *
      * @param color (String)
      * @param value (double)
      * @param ends (Vertex[])
      */
-    public UndirectedEdge(int id, String color, double value, Vertex[] ends) {
-        super(id, color, value, ends);
+    public UndirectedEdge(Color color, double value, Vertex[] ends) {
+        super(color, value, ends);
     }
 
     /**

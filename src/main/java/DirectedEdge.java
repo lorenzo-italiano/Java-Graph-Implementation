@@ -1,3 +1,4 @@
+import java.awt.*;
 
 /**
  * Directed edge representation. Inherits from abstract class Edge
@@ -9,14 +10,13 @@ public class DirectedEdge extends Edge{
 
     /**
      * Constructor of DirectedEdge instances
-     * @param id (int)
      * @param color (String)
      * @param value (double)
      * @param ends (Vertex[])
      * @param source (int) 0 or 1
      */
-    public DirectedEdge(int id, String color, double value, Vertex[] ends, int source) {
-        super(id, color, value, ends);
+    public DirectedEdge(Color color, double value, int source, Vertex[] ends) {
+        super(color, value, ends);
         this.source = source;
     }
 

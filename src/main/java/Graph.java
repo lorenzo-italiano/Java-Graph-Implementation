@@ -1,3 +1,4 @@
+import org.jetbrains.annotations.NotNull;
 
 /**
  * a Graph interface containing the necessary methods to be used for solving a graph problem
@@ -24,9 +25,9 @@ public interface Graph {
      * Creates a new edge linking two vertices
      * @param vertex1 (Vertex): first vertex to be linked
      * @param vertex2 (Vertex): second vertex to be linked
-     * @param edge (Edge): Edge linking first and second vertices (directed or undirected)
+     * @param edgeKind (EdgeKind): Edge directed or undirected
      */
-    void addEdge(Vertex vertex1,Vertex vertex2,Edge edge);
+    void addEdge(Vertex vertex1, Vertex vertex2, @NotNull EdgeKind edgeKind);
 
     /**Params
      * Tells if the two vertices are connected by an Edge
