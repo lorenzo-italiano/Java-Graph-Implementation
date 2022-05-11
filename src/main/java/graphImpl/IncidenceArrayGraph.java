@@ -1,6 +1,9 @@
+package graphImpl;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class IncidenceArrayGraph implements Graph {
@@ -13,13 +16,15 @@ public class IncidenceArrayGraph implements Graph {
     private int currentNumberOfVertices;
     private int currentNumberOfEdges;
 
+    private final EdgeKind edgeKind;
+
 
     /**
      * Constructor.
      *
      * @param n Maximum number of vertices. Must be positive.
      */
-    public IncidenceArrayGraph(int n) {
+    public IncidenceArrayGraph(int n, EdgeKind edgeKind) {
         if (n <= 0) {
             throw new RuntimeException("Number of vertices must be positive. ");
         }
@@ -29,6 +34,7 @@ public class IncidenceArrayGraph implements Graph {
 
         currentNumberOfVertices = 0;
         currentNumberOfEdges = 0;
+        this.edgeKind = edgeKind;
     }
 
     @Override
@@ -52,7 +58,7 @@ public class IncidenceArrayGraph implements Graph {
     }
 
     @Override
-    public void addEdge(Vertex vertex1, Vertex vertex2, @NotNull EdgeKind edgeKind) {
+    public void addEdge(Vertex vertex1, Vertex vertex2) {
         if (nbOfEdges() == edgeArray.length) {
             throw new RuntimeException("Maximum number of edges hit. ");
         }
@@ -61,7 +67,7 @@ public class IncidenceArrayGraph implements Graph {
         Color color = Color.RED;
 
         Edge edge;
-        switch (edgeKind) {
+        switch (this.edgeKind) {
             case DIRECTED -> {
                 int source = 0;
                 edge = new DirectedEdge(color, value, source, new Vertex[]{vertex1, vertex2});
@@ -83,10 +89,10 @@ public class IncidenceArrayGraph implements Graph {
     }
 
     /**
-     * @param vertex : Vertex
+     * @param vertex : graphImpl.Vertex
      * @return The index of the vertex in vertexArray, or -1.
      */
-    private int containVertex (Vertex vertex) {
+    public int containVertex (Vertex vertex) {
         for (int i = 0; i < nbOfVertices(); i++) {
             if (vertex.getId() == vertexArray[i].getId()) {
                 return i;
@@ -97,7 +103,7 @@ public class IncidenceArrayGraph implements Graph {
 
     /**
      * If the vertex in params isn't in the list vertexArray, add it.
-     * @param vertex : Vertex
+     * @param vertex : graphImpl.Vertex
      * @return The index of the vertex in vertexArray
      */
     private int findOrAddVertex (Vertex vertex) {
@@ -110,9 +116,36 @@ public class IncidenceArrayGraph implements Graph {
         return indexVertex;
     }
 
+    public boolean searchConnection(int idVertex1, int idVertex2, ArrayList<Integer> seen){
+        if(incidenceArray[idVertex1][idVertex2]!=null){
+            return true;
+        }
+        else{
+            for (int i = 0; i < currentNumberOfVertices; i++) {
+                if(incidenceArray[idVertex1][i]!=null){
+                    if(!seen.contains(i)){
+                        seen.add(i);
+                        if(searchConnection(i,idVertex2, seen)){
+                            return true;
+                        }
+                    }
+
+                }
+            }
+            return false;
+        }
+    }
+
     @Override
     public boolean isConnected(Vertex vertex1, Vertex vertex2) {
-        return incidenceArray[containVertex(vertex1)][containVertex(vertex2)] != null;
+        if(incidenceArray[containVertex(vertex1)][containVertex(vertex2)] != null){
+            return true;
+        }
+        else{
+            int indexVertex1 = containVertex(vertex1);
+            int indexVertex2 = containVertex(vertex2);
+            return searchConnection(indexVertex1,indexVertex2, new ArrayList<>());
+        }
     }
 
     @Override
@@ -129,7 +162,24 @@ public class IncidenceArrayGraph implements Graph {
 
     @Override
     public Edge[] getEdges(Vertex vertex1, Vertex vertex2) {
-        throw new RuntimeException("Not implemented. ");
+        int indexVertex1 = containVertex(vertex1);
+        int indexVertex2 = containVertex(vertex2);
+
+        if (indexVertex1 == -1 && indexVertex2 == -1) {
+            return null;
+        }
+        else {
+            Edge[] edges = new Edge[2];
+
+            edges[0] = incidenceArray[indexVertex1][indexVertex2];
+            edges[1] = incidenceArray[indexVertex2][indexVertex1];
+
+            if (edges[0] == null && edges[1] == null) {
+                return null;
+            }
+
+            return edges;
+        }
     }
 
     @Override
@@ -161,12 +211,19 @@ public class IncidenceArrayGraph implements Graph {
         return edges;
     }
 
+    public EdgeKind getEdgeKind() {
+        return edgeKind;
+    }
+
+    public Edge[][] getIncidenceArray() {
+        return incidenceArray;
+    }
+
     @Override
     public String toString() {
-        return "IncidenceArrayGraph{" +
-                "vertexArray=" + Arrays.toString(vertexArray) +
+        return "graphImpl.IncidenceArrayGraph{" +
+                "vertexArray=" + Arrays.toString(vertexArray) + "\n" +
                 ", edgeArray=" + Arrays.toString(edgeArray) +
-                ", incidenceArray=" + Arrays.toString(incidenceArray) +
                 '}';
     }
 }

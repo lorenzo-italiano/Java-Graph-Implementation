@@ -1,8 +1,10 @@
+package graphImpl;
+
 import java.awt.*;
 import java.util.Arrays;
 
 /**
- * Abstract class Edge setting up common variables and methods for directed and undirected edges
+ * Abstract class graphImpl.Edge setting up common variables and methods for directed and undirected edges
  */
 public abstract class Edge {
 
@@ -13,10 +15,10 @@ public abstract class Edge {
     private double value;
 
     /**Params
-     * Constructor of Edge abstract class ( BEWARE !! an abstract class can't be instanced)
+     * Constructor of graphImpl.Edge abstract class ( BEWARE !! an abstract class can't be instanced)
      * @param color (String): color of the edge
      * @param value (double): value of the edge
-     * @param ends (Vertex []): Vertices linked by this edge
+     * @param ends (graphImpl.Vertex []): Vertices linked by this edge
      */
     public Edge(Color color, double value, Vertex[] ends) {
         this.id = currentId++;
@@ -24,7 +26,7 @@ public abstract class Edge {
         this.value = value;
 
         if (ends.length != 2) {
-            throw new RuntimeException("Invalid number of ends for an Edge. ");
+            throw new RuntimeException("Invalid number of ends for an graphImpl.Edge. ");
         }
         this.ends = ends;
     }
@@ -63,7 +65,7 @@ public abstract class Edge {
 
     /**
      * sets the Vertices array connected by this edge
-     * @param ends (Vertex [])
+     * @param ends (graphImpl.Vertex [])
      */
     public void setEnds(Vertex[] ends) {
         this.ends = ends;
@@ -91,11 +93,6 @@ public abstract class Edge {
      */
     @Override
     public String toString() {
-        return "Edge{" +
-                "id=" + id +
-                ", color='" + color + '\'' +
-                ", ends=" + Arrays.toString(ends) +
-                ", value=" + value +
-                '}';
+        return "graphImpl.Edge{" + "ends=" + ends[0].getId() + "-" +ends[1].getId() + "}\n";
     }
 }

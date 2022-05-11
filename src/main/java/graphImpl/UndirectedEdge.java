@@ -1,16 +1,18 @@
+package graphImpl;
+
 import java.awt.*;
 
 /**
- * Undirected Edge representation. Inherits from Edge abstract class
+ * Undirected graphImpl.Edge representation. Inherits from graphImpl.Edge abstract class
  */
 public class UndirectedEdge extends Edge{
 
     /**Params
-     * Constructor of UndirectedEdge instance.
+     * Constructor of graphImpl.UndirectedEdge instance.
      *
      * @param color (String)
      * @param value (double)
-     * @param ends (Vertex[])
+     * @param ends (graphImpl.Vertex[])
      */
     public UndirectedEdge(Color color, double value, Vertex[] ends) {
         super(color, value, ends);
@@ -18,7 +20,7 @@ public class UndirectedEdge extends Edge{
 
     /**
      * To string
-     * @return Stringified version of UndirectedEdge
+     * @return Stringified version of graphImpl.UndirectedEdge
      */
     @Override
     public String toString() {

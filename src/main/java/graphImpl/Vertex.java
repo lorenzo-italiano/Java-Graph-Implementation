@@ -1,3 +1,5 @@
+package graphImpl;
+
 import java.awt.*;
 
 /**
@@ -12,8 +14,8 @@ public class Vertex {
 
     /**Params
      * Constructor
-     * @param info (Object): Object indicating infos on the Vertex
-     * @param color (String): Color of the Vertex
+     * @param info (Object): Object indicating infos on the graphImpl.Vertex
+     * @param color (String): Color of the graphImpl.Vertex
      */
     public Vertex(Object info, Color color) {
         this.id = currentId++;
@@ -47,11 +49,11 @@ public class Vertex {
 
     /**Params
      * To string
-     * @return Stringified version of the Vertex instance
+     * @return Stringified version of the graphImpl.Vertex instance
      */
     @Override
     public String toString() {
-        return "Vertex{" +
+        return "graphImpl.Vertex{" +
                 "id=" + id +
                 ", info=" + info +
                 ", color='" + color + '\'' +

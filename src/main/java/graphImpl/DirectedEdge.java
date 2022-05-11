@@ -1,7 +1,9 @@
+package graphImpl;
+
 import java.awt.*;
 
 /**
- * Directed edge representation. Inherits from abstract class Edge
+ * Directed edge representation. Inherits from abstract class graphImpl.Edge
  */
 public class DirectedEdge extends Edge{
 
@@ -9,10 +11,10 @@ public class DirectedEdge extends Edge{
     private int source;
 
     /**
-     * Constructor of DirectedEdge instances
+     * Constructor of graphImpl.DirectedEdge instances
      * @param color (String)
      * @param value (double)
-     * @param ends (Vertex[])
+     * @param ends (graphImpl.Vertex[])
      * @param source (int) 0 or 1
      */
     public DirectedEdge(Color color, double value, int source, Vertex[] ends) {

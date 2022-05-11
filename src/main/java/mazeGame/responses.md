@@ -1,0 +1,1 @@
+13 ) Yes if we modify links or cells it's modified in the graph because the methods getEdges and getVertices return a pointer to the arrays.

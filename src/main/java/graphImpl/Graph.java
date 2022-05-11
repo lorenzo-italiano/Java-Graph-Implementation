@@ -1,7 +1,9 @@
+package graphImpl;
+
 import org.jetbrains.annotations.NotNull;
 
 /**
- * a Graph interface containing the necessary methods to be used for solving a graph problem
+ * a graphImpl.Graph interface containing the necessary methods to be used for solving a graph problem
  */
 public interface Graph {
 
@@ -17,22 +19,22 @@ public interface Graph {
 
     /**Params
      * Adds a vertex to the graph
-     * @param vertex (Vertex): the vertex to add
+     * @param vertex (graphImpl.Vertex): the vertex to add
      */
     void addVertex(Vertex vertex);
 
     /**Params
      * Creates a new edge linking two vertices
-     * @param vertex1 (Vertex): first vertex to be linked
-     * @param vertex2 (Vertex): second vertex to be linked
-     * @param edgeKind (EdgeKind): Edge directed or undirected
+     * @param vertex1 (graphImpl.Vertex): first vertex to be linked
+     * @param vertex2 (graphImpl.Vertex): second vertex to be linked
+     * @param edgeKind (graphImpl.EdgeKind): graphImpl.Edge directed or undirected
      */
-    void addEdge(Vertex vertex1, Vertex vertex2, @NotNull EdgeKind edgeKind);
+    void addEdge(Vertex vertex1, Vertex vertex2);
 
     /**Params
-     * Tells if the two vertices are connected by an Edge
-     * @param vertex1 (Vertex): vertex n°1
-     * @param vertex2 (Vertex): vertex n°2
+     * Tells if the two vertices are connected by an graphImpl.Edge
+     * @param vertex1 (graphImpl.Vertex): vertex n°1
+     * @param vertex2 (graphImpl.Vertex): vertex n°2
      * @return true if they are linked, false if not
      */
     boolean isConnected(Vertex vertex1, Vertex vertex2);
@@ -45,9 +47,9 @@ public interface Graph {
 
     /**Params
      * give edge(s) connecting these vertices
-     * @param vertex1 (Vertex): vertex n°1
-     * @param vertex2 (Vertex): vertex n°2
-     * @return an Edge array of all edge(s) connecting vertex1 and vertex2
+     * @param vertex1 (graphImpl.Vertex): vertex n°1
+     * @param vertex2 (graphImpl.Vertex): vertex n°2
+     * @return an graphImpl.Edge array of all edge(s) connecting vertex1 and vertex2
      */
     Edge[] getEdges(Vertex vertex1, Vertex vertex2);
 
@@ -62,14 +64,14 @@ public interface Graph {
     Vertex[] getVertices();
 
     /**Params
-     * @param vertex (Vertex)
+     * @param vertex (graphImpl.Vertex)
      * @return array of edge(s) connected to this vertex
      */
     Edge[] getNeighborEdges(Vertex vertex);
 
     /**Params
      * To string
-     * @return Stringified object of Graph instance
+     * @return Stringified object of graphImpl.Graph instance
      */
     String toString();
 }
