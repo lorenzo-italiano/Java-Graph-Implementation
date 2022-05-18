@@ -1,18 +1,15 @@
-import graphImpl.EdgeKind;
-import graphImpl.Graph;
-import graphImpl.IncidenceArrayGraph;
-import graphImpl.Vertex;
+import graphImpl.*;
 
 import java.awt.*;
 
 public class TestGraphImpl {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws GraphException {
         Graph graph = new IncidenceArrayGraph(3, EdgeKind.UNDIRECTED);
 
-        Vertex vertex1 = new Vertex("graphImpl.Vertex 1. ", Color.BLUE);
-        Vertex vertex2 = new Vertex("graphImpl.Vertex 2. ", Color.BLUE);
-        Vertex vertex3 = new Vertex("graphImpl.Vertex 3. ", Color.BLUE);
+        Vertex vertex1 = new Vertex("Vertex 1. ", Color.BLUE);
+        Vertex vertex2 = new Vertex("Vertex 2. ", Color.BLUE);
+        Vertex vertex3 = new Vertex("Vertex 3. ", Color.BLUE);
 
         graph.addVertex(vertex1);
         graph.addVertex(vertex2);

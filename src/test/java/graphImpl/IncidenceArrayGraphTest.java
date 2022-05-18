@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 
 import java.awt.*;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class IncidenceArrayGraphTest {
@@ -17,7 +17,7 @@ public class IncidenceArrayGraphTest {
     private Vertex vertex3;
 
     @BeforeEach
-    void init () {
+    void init () throws GraphException {
         graph = new IncidenceArrayGraph(3, EdgeKind.UNDIRECTED);
 
         vertex1 = new Vertex("Vertex 1. ", Color.BLUE);
@@ -49,5 +49,17 @@ public class IncidenceArrayGraphTest {
     public void test_nbVertices_nbEdges(){
         assertEquals(2, graph.nbOfEdges());
         assertEquals(3, graph.nbOfVertices());
+    }
+
+    @Test()
+    public void test_exceptionVertices () {
+        Vertex vertex4 = new Vertex("Vertex 3. ", Color.BLUE);
+        Exception exception = assertThrows(GraphException.class, () -> {
+            graph.addVertex(vertex4);
+        });
+        String expectedMessage = "For input string";
+        String actualMessage = exception.getMessage();
+
+        assertEquals("The graph has already the maximum number of vertices. ", actualMessage);
     }
 }

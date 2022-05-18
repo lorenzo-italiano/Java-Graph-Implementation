@@ -21,7 +21,7 @@ public interface Graph {
      * Adds a vertex to the graph
      * @param vertex (graphImpl.Vertex): the vertex to add
      */
-    void addVertex(Vertex vertex);
+    void addVertex(Vertex vertex) throws GraphException;
 
     /**Params
      * Creates a new edge linking two vertices
@@ -29,7 +29,7 @@ public interface Graph {
      * @param vertex2 (graphImpl.Vertex): second vertex to be linked
      * @param edgeKind (graphImpl.EdgeKind): graphImpl.Edge directed or undirected
      */
-    void addEdge(Vertex vertex1, Vertex vertex2);
+    void addEdge(Vertex vertex1, Vertex vertex2) throws GraphException;
 
     /**Params
      * Tells if the two vertices are connected by an graphImpl.Edge

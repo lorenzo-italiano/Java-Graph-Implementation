@@ -24,9 +24,9 @@ public class IncidenceArrayGraph implements Graph {
      *
      * @param n Maximum number of vertices. Must be positive.
      */
-    public IncidenceArrayGraph(int n, EdgeKind edgeKind) {
+    public IncidenceArrayGraph(int n, EdgeKind edgeKind) throws GraphException {
         if (n <= 0) {
-            throw new RuntimeException("Number of vertices must be positive. ");
+            throw new GraphException("Number of vertices must be positive. ");
         }
         vertexArray = new Vertex[n];
         edgeArray = new Edge[n * n];
@@ -48,9 +48,9 @@ public class IncidenceArrayGraph implements Graph {
     }
 
     @Override
-    public void addVertex(Vertex vertex) {
+    public void addVertex(Vertex vertex) throws GraphException {
         if (currentNumberOfVertices == vertexArray.length) {
-            throw new RuntimeException("The graph has already the maximum number of vertices. ");
+            throw new GraphException("The graph has already the maximum number of vertices. ");
         }
 
         vertexArray[nbOfVertices()] = vertex;
@@ -58,9 +58,9 @@ public class IncidenceArrayGraph implements Graph {
     }
 
     @Override
-    public void addEdge(Vertex vertex1, Vertex vertex2) {
+    public void addEdge(Vertex vertex1, Vertex vertex2) throws GraphException {
         if (nbOfEdges() == edgeArray.length) {
-            throw new RuntimeException("Maximum number of edges hit. ");
+            throw new GraphException("Maximum number of edges hit. ");
         }
 
         double value = 3;
@@ -106,7 +106,7 @@ public class IncidenceArrayGraph implements Graph {
      * @param vertex : graphImpl.Vertex
      * @return The index of the vertex in vertexArray
      */
-    private int findOrAddVertex (Vertex vertex) {
+    private int findOrAddVertex (Vertex vertex) throws GraphException {
         int indexVertex = containVertex(vertex);
         if (indexVertex < 0) {
             indexVertex = nbOfVertices();

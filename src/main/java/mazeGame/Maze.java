@@ -13,7 +13,7 @@ public class Maze {
     private Vertex departure;
     private Vertex arrival;
 
-    public Maze(int size, double density,double dangerousness){
+    public Maze(int size, double density,double dangerousness) throws GraphException{
         this.graph = new IncidenceArrayGraph(size, EdgeKind.UNDIRECTED);
         for (int i = 0; i < size; i++) {
             double random = Math.random();
