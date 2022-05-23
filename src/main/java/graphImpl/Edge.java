@@ -1,12 +1,13 @@
 package graphImpl;
 
 import java.awt.*;
+import java.io.Serializable;
 import java.util.Arrays;
 
 /**
  * Abstract class graphImpl.Edge setting up common variables and methods for directed and undirected edges
  */
-public abstract class Edge {
+public abstract class Edge implements Serializable {
 
     private final int id;
     private static int currentId = 0;

@@ -1,11 +1,12 @@
 package graphImpl;
 
 import java.awt.*;
+import java.io.Serializable;
 
 /**
  * Vertices representation
  */
-public class Vertex {
+public class Vertex implements Serializable {
 
     private final int id;
     private static int currentId = 0;

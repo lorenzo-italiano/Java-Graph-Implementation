@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  * Undirected graphImpl.Edge representation. Inherits from graphImpl.Edge abstract class
  */
-public class UndirectedEdge extends Edge{
+public class UndirectedEdge extends Edge {
 
     /**Params
      * Constructor of graphImpl.UndirectedEdge instance.

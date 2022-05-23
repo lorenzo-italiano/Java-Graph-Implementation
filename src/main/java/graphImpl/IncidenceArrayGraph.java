@@ -1,8 +1,10 @@
 package graphImpl;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.awt.Color;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -225,5 +227,20 @@ public class IncidenceArrayGraph implements Graph {
                 "vertexArray=" + Arrays.toString(vertexArray) + "\n" +
                 ", edgeArray=" + Arrays.toString(edgeArray) +
                 '}';
+    }
+
+    public void serialize (String fileName) throws IOException {
+        OutputStream os = Files.newOutputStream(Paths.get(fileName), StandardOpenOption.CREATE);
+
+        ObjectOutputStream oos = new ObjectOutputStream(os); // decorated object
+        oos.writeObject(this); // person1 is a Person object
+    }
+
+    public Graph deserialize (String fileName) throws IOException, ClassNotFoundException {
+        InputStream is = Files.newInputStream(Paths.get(fileName),StandardOpenOption.READ);
+
+        ObjectInputStream ois = new ObjectInputStream(is); // decorated object
+
+        return (Graph) ois.readObject(); // Need to cast
     }
 }

@@ -2,10 +2,13 @@ package graphImpl;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
+import java.io.Serializable;
+
 /**
  * a graphImpl.Graph interface containing the necessary methods to be used for solving a graph problem
  */
-public interface Graph {
+public interface Graph extends Serializable {
 
     /**Params
      * @return the number of vertices (int)
@@ -74,4 +77,8 @@ public interface Graph {
      * @return Stringified object of graphImpl.Graph instance
      */
     String toString();
+
+    void serialize (String fileName) throws IOException;
+
+    Graph deserialize (String fileName) throws IOException, ClassNotFoundException;
 }
