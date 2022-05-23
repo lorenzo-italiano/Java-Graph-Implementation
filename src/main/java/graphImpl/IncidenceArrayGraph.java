@@ -59,7 +59,7 @@ public class IncidenceArrayGraph implements Graph {
 
     @Override
     public void addEdge(Vertex vertex1, Vertex vertex2) throws GraphException {
-        if (nbOfEdges() == edgeArray.length) {
+        if (nbOfEdges() >= edgeArray.length-1) {
             throw new GraphException("Maximum number of edges hit. ");
         }
 
@@ -71,21 +71,32 @@ public class IncidenceArrayGraph implements Graph {
             case DIRECTED -> {
                 int source = 0;
                 edge = new DirectedEdge(color, value, source, new Vertex[]{vertex1, vertex2});
+                edgeArray[nbOfEdges()] = edge;
+                currentNumberOfEdges++;
+
+                int indexVertex1 = findOrAddVertex(vertex1);
+                int indexVertex2 = findOrAddVertex(vertex2);
+
+                incidenceArray[indexVertex1][indexVertex2] = edge;
+                break;
             }
-            case UNDIRECTED -> edge = new UndirectedEdge(color, value, new Vertex[]{vertex1, vertex2});
+            case UNDIRECTED -> {
+                edge = new UndirectedEdge(color, value, new Vertex[]{vertex1, vertex2});
+                edgeArray[nbOfEdges()] = edge;
+                currentNumberOfEdges++;
+                edge = new UndirectedEdge(color, value, new Vertex[]{vertex2, vertex1});
+                edgeArray[nbOfEdges()] = edge;
+                currentNumberOfEdges++;
+
+                int indexVertex1 = findOrAddVertex(vertex1);
+                int indexVertex2 = findOrAddVertex(vertex2);
+
+                incidenceArray[indexVertex1][indexVertex2] = edge;
+                incidenceArray[indexVertex2][indexVertex1] = edge;
+                break;
+            }
             default -> throw new IllegalStateException("Unexpected value: " + edgeKind);
         }
-        edgeArray[nbOfEdges()] = edge;
-
-
-        int indexVertex1 = findOrAddVertex(vertex1);
-        int indexVertex2 = findOrAddVertex(vertex2);
-
-        incidenceArray[indexVertex1][indexVertex2] = edge;
-        incidenceArray[indexVertex2][indexVertex1] = edge;
-
-
-        currentNumberOfEdges++;
     }
 
     /**
@@ -106,7 +117,7 @@ public class IncidenceArrayGraph implements Graph {
      * @param vertex : graphImpl.Vertex
      * @return The index of the vertex in vertexArray
      */
-    private int findOrAddVertex (Vertex vertex) throws GraphException {
+    public int findOrAddVertex (Vertex vertex) throws GraphException {
         int indexVertex = containVertex(vertex);
         if (indexVertex < 0) {
             indexVertex = nbOfVertices();
